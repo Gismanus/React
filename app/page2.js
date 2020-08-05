@@ -91,11 +91,13 @@ class Counter extends React.Component {
             return (
                 <div className='counter'>
                     Count is {count}. Count is bigger than 5
-                    <button
+                    <button type="reset" className='button_count' onClick={this.myClickHandler}>Reset</button>
                 </div>
             )
         }
-
+    }
+    myClickHandler(){
+        count = 0;
     }
 }
 
