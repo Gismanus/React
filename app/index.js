@@ -5,10 +5,10 @@ class Links extends React.Component {
     render(props) {
         return(
             <ul>
-                <a href='index.html' className='link button'>
+                <a href='./index.html' className='link button'>
                     {this.props.name1}
                 </a>
-                <a href='page2.html' className='link button'>
+                <a href='./page2.html' className='link button'>
                     {this.props.name2}
                 </a>
                 <a href='page3.html' className='link button'>
