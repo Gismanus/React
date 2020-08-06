@@ -5,10 +5,10 @@ class Links extends React.Component {
     render(props) {
         return(
             <ul>
-                <a href='index.html' className='link button'>
+                <a href='./index.html' className='link button'>
                     {this.props.name1}
                 </a>
-                <a href='page2.html' className='link button'>
+                <a href='./page2.html' className='link button'>
                     {this.props.name2}
                 </a>
                 <a href='page3.html' className='link button'>
@@ -35,9 +35,6 @@ class Header extends React.Component {
     }
 }
 
-
-
-
 class Content extends React.Component {
     render(){
         return(
@@ -47,19 +44,6 @@ class Content extends React.Component {
                     <Counter />
                     <br/>
                     <a href="https://ru.reactjs.org/"  target='_blank'><img src='img/react.png'/></a>
-                </div>
-            </div>
-        )
-    }
-}
-
-
-class Footer extends React.Component {
-    render(){
-        return(
-            <div className='footer'>
-                <div className="container">
-                    <h1>FOOTER</h1>
                 </div>
             </div>
         )
@@ -78,34 +62,58 @@ class App extends React.Component {
     }
 }
 
-let count = 0;
 class Counter extends React.Component {
-    render(props){
-        if (count < 5) {
+    constructor(props) {
+        super(props);
+        this.state = {count: 0}
+    }
+
+   componentDidMount() {
+       this.timer = setInterval(() => {
+           this.setState({count: this.state.count + 1})
+       }, 1000);
+   }
+
+    componentWillUnmount() {
+        clearInterval(this.counterID);
+    }
+
+    myClickHandler = () => {
+        this.setState({count: 0})
+    }
+
+    render(){
+        if (this.state.count < 5) {
             return (
                 <div className='counter'>
-                    Count is {count}
+                    Count is {this.state.count}
                 </div>
             )
         } else {
             return (
                 <div className='counter'>
-                    Count is {count}. Count is bigger than 5
+                    Count is {this.state.count}. Count is bigger than 5
                     <button type="reset" className='button_count' onClick={this.myClickHandler}>Reset</button>
                 </div>
             )
         }
     }
-    myClickHandler(){
-        count = 0;
+
+}
+
+class Footer extends React.Component {
+    render(){
+        return(
+            <div className='footer'>
+                <div className="container">
+                    <h1>FOOTER</h1>
+                </div>
+            </div>
+        )
     }
 }
 
-function counter(){
-    ReactDOM.render(
-        <App />,
-        document.getElementById('root')
-    );
-    count++;
-}
-setInterval(counter, 1000)
+ReactDOM.render(
+    <App />,
+    document.getElementById('root'),
+);
