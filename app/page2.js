@@ -66,8 +66,8 @@ class Counter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {count: 0}
+        /*this.myClickHandler = this.myClickHandler.bind(this)*/
     }
-
    componentDidMount() {
        this.timer = setInterval(() => {
            this.setState({count: this.state.count + 1})
@@ -75,8 +75,12 @@ class Counter extends React.Component {
    }
 
     componentWillUnmount() {
-        clearInterval(this.counterID);
+        clearInterval(this.timer);
     }
+
+    /*myClickHandler = function(){ /!* call, apply, bind *!/
+        this.setState({count: 0})
+    }*/
 
     myClickHandler = () => {
         this.setState({count: 0})
